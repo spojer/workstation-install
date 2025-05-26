@@ -1,0 +1,15 @@
+-   name: Install defaults package 22.04
+    become: true
+    apt:
+        name: "{{ default_packages_22_04 }}"
+        state: present
+        update_cache: yes
+    when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "22.04")
+
+-   name: Install defaults package 24.04
+    become: true
+    apt:
+        name: "{{ default_packages_24_04 }}"
+        state: present
+        update_cache: yes
+    when: (ansible_distribution == "Ubuntu" and ansible_distribution_version == "24.04")

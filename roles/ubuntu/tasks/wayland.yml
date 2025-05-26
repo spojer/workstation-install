@@ -1,0 +1,16 @@
+-   name: Test if /etc/gdm3 directory exist
+    become: true
+    stat:
+        path: /etc/gdm3
+    register: gdm3_stat_result
+
+
+-   name: Disable Wayland
+    become: true
+    copy:
+        src: "{{ role_path }}/files/gdm3_custom.conf"
+        dest: "/etc/gdm3/custom.conf"
+        mode: 0644
+        owner: root
+        group: root
+    when: gdm3_stat_result.stat.exists

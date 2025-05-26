@@ -1,0 +1,36 @@
+
+-   name: Check if aqua is installed
+    stat:
+        path: "/home/{{ user.login }}/.local/share/aqua"
+    register: aqua_bin_stat
+
+-   name: Download aqua-installer
+    get_url:
+        url: "https://raw.githubusercontent.com/aquaproj/aqua-installer/v3.1.2/aqua-installer"
+        dest: "/tmp/aqua-installer"
+        mode: '0755'
+    when: not aqua_bin_stat.stat.exists
+
+-   name: Get aqua-installer info
+    stat:
+        path: "/tmp/aqua-installer"
+        checksum_algorithm: sha256
+    register: aqua_install_stat
+
+-   name: Install Aqua
+    become: true
+    become_user: "{{ user.login }}"
+    command:
+        cmd: "bash /tmp/aqua-installer"
+    environment:
+        AQUA_ROOT_DIR: "/home/{{ user.login }}/.local/share/aqua"
+    when: not aqua_bin_stat.stat.exists and aqua_install_stat.stat.exists and aqua_install_stat.stat.checksum == "9a5afb16da7191fbbc0c0240a67e79eecb0f765697ace74c70421377c99f0423"
+
+-   name: Create symlink for aqua binary
+    file:
+        src: "/home/{{ user.login }}/.local/share/aqua/bin/aqua"
+        dest: "/home/{{ user.login }}/bin/aqua"
+        state: link
+        owner: "{{ user.login }}"
+        group: "{{ user.login }}"
+        force: yes

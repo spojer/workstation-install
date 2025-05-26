@@ -1,0 +1,44 @@
+---
+
+-   name: Install Packages for Docker
+    become: yes
+    apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+    loop:
+    -   ca-certificates
+    -   curl
+    -   gnupg
+    -   lsb-release
+
+-   name: Add Docker GPG apt Key
+    become: yes
+    apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+-   name: Add Docker Repo
+    become: yes
+    apt_repository:
+        repo: "deb https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        state: present
+
+-   name: Install Packages
+    become: yes
+    apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+    loop:
+    -   docker-ce
+    -   docker-ce-cli
+    -   containerd.io
+    -   docker-compose-plugin
+
+-   name: Add user '{{ user.login }}' to group docker
+    become: yes
+    user:
+        name: '{{ user.login }}'
+        groups: docker
+        append: yes

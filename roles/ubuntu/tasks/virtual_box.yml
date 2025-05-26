@@ -1,0 +1,13 @@
+-   name: Check if group vboxsf exist
+    command: getent group vboxsf
+    register: check_vboxsf_group
+    ignore_errors: true
+    changed_when: false
+
+-   name: Add user '{{ user.login }}' to group vboxsf
+    become: yes
+    user:
+        name: '{{ user.login }}'
+        groups: vboxsf
+        append: yes
+    when: check_vboxsf_group.rc == 0

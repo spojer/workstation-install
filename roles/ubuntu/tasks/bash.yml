@@ -1,0 +1,28 @@
+
+-   name: Create bash directory
+    file:
+        path: "{{ item }}"
+        state: directory
+        mode: '0755'
+    loop:
+    -   "/home/{{ user.login }}/.bash.d"
+    -   "/home/{{ user.login }}/bin"
+
+-   name: Clone bash git promp
+    git:
+        repo: https://github.com/magicmonty/bash-git-prompt.git
+        dest: "/home/{{ user.login }}/.bash-git-prompt"
+        depth: 1
+
+-   name: Create bash aliases
+    copy:
+        src: "{{ role_path }}/files/bash/{{ item.filename }}"
+        dest: "/home/{{ user.login }}/{{ item.dest }}"
+        mode: 0644
+    with_items:
+    -   { 'filename': 'bash_aliases', 'dest': '.bash_aliases' }
+    -   { 'filename': 'emacs.sh',     'dest': '.bash.d/emacs.sh' }
+    -   { 'filename': 'gitprompt.sh', 'dest': '.bash.d/gitprompt.sh' }
+    -   { 'filename': 'open.sh',      'dest': '.bash.d/open.sh' }
+    -   { 'filename': 'local_bin.sh', 'dest': '.bash.d/local_bin.sh' }
+    -   { 'filename': 'direnv.sh',    'dest': '.bash.d/direnv.sh' }

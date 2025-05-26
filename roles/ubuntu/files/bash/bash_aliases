@@ -1,0 +1,4 @@
+# Load other config
+for file in ~/.bash.d/*.sh ; do
+  . $file
+done

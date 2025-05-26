@@ -1,0 +1,57 @@
+---
+
+default_packages_22_04:
+-   apt-transport-https
+-   asciinema
+-   build-essential
+-   ca-certificates
+-   curl
+-   direnv
+-   emacs
+-   git
+-   gitk
+-   htop
+-   iftop
+-   iotop
+-   ipcalc
+-   jq
+-   keepassxc
+-   ncdu
+-   net-tools
+-   netcat
+-   parted
+-   rsync
+-   ruby
+-   software-properties-common
+-   traceroute
+-   tree
+-   vim
+-   wget
+
+default_packages_24_04:
+-   apt-transport-https
+-   asciinema
+-   build-essential
+-   ca-certificates
+-   curl
+-   direnv
+-   emacs
+-   git
+-   gitk
+-   htop
+-   iftop
+-   iotop
+-   ipcalc
+-   jq
+-   keepassxc
+-   ncdu
+-   net-tools
+-   netcat-openbsd
+-   parted
+-   rsync
+-   ruby
+-   software-properties-common
+-   traceroute
+-   tree
+-   vim
+-   wget

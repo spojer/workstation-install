@@ -1,0 +1,5 @@
+-   name: Configure GitConfig
+    template:
+        src: gitconfig.j2
+        dest: "/home/{{ user.login }}/.gitconfig"
+        mode: "0644"

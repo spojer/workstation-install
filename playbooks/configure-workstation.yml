@@ -1,0 +1,11 @@
+---
+-   name: "Playing with Ansible and Git"
+    hosts: localhost
+    connection: local
+    vars_files: ../vars/user.yml
+    tasks:
+
+    -   name: Configure Ubuntu
+        include_role:
+            name: ubuntu
+        when: ansible_distribution == "Ubuntu"

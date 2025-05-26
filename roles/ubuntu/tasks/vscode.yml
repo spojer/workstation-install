@@ -1,0 +1,31 @@
+---
+
+-   name: Install Packages for VScode
+    become: yes
+    apt:
+        name: "{{item}}"
+        state: present
+        update_cache: yes
+    loop:
+    -   wget
+    -   gpg
+    -   apt-transport-https
+
+-   name: Add VScode GPG apt Key
+    become: yes
+    apt_key:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        state: present
+
+-   name: Add VScode Repo
+    become: yes
+    apt_repository:
+        repo: "deb [arch=amd64] https://packages.microsoft.com/repos/code stable main"
+        state: present
+
+-   name: Install VScode
+    become: yes
+    apt:
+        name: code
+        state: present
+        update_cache: yes
