@@ -16,6 +16,13 @@ default_packages_22_04:
 -   ipcalc
 -   jq
 -   keepassxc
+-   libbz2-dev
+-   libffi-dev
+-   liblzma-dev
+-   libncurses-dev
+-   libreadline-dev
+-   libsqlite3-dev
+-   libssl-dev
 -   ncdu
 -   net-tools
 -   netcat
@@ -23,10 +30,12 @@ default_packages_22_04:
 -   rsync
 -   ruby
 -   software-properties-common
+-   tk-dev
 -   traceroute
 -   tree
 -   vim
 -   wget
+-   zlib1g-dev
 
 default_packages_24_04:
 -   apt-transport-https
@@ -44,6 +53,13 @@ default_packages_24_04:
 -   ipcalc
 -   jq
 -   keepassxc
+-   libbz2-dev
+-   libffi-dev
+-   liblzma-dev
+-   libncurses-dev
+-   libreadline-dev
+-   libsqlite3-dev
+-   libssl-dev
 -   ncdu
 -   net-tools
 -   netcat-openbsd
@@ -51,7 +67,9 @@ default_packages_24_04:
 -   rsync
 -   ruby
 -   software-properties-common
+-   tk-dev
 -   traceroute
 -   tree
 -   vim
 -   wget
+-   zlib1g-dev
